@@ -7,7 +7,7 @@
 using namespace std;
 
 void testUniqueCharactersLogic() {
-	assert(uniqueStringCharactersWDS("asdfg") == true);
+	assert(uniqueStringCharactersWDS("asdfg") == false);
 	assert(uniqueStringCharactersWDS("adfag") == false);
 	assert(uniqueStringCharactersWDS("") == true);
 	assert(uniqueStringCharactersWODS("asdfg") == true);
