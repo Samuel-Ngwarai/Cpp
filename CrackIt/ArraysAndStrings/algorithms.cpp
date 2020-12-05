@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <cstdlib>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
@@ -99,6 +100,73 @@ bool palindromePermutation(string a) {
   }
 
   return true;
+}
+
+// Check if two strings are one edit away from being identical
+bool oneEditAway(string a, string b) {
+  if (abs(int(a.length() - b.length())) > 1) {
+    return false;
+  }
+
+  bool sameLength = a.length() == b.length();
+
+  // effectively make sure a is always the shorter string
+  if (a.length() > b.length()) {
+    swap(a, b);
+  }
+
+  int ait = 0, bit = 0;
+  bool diffFound = false;
+
+  while (ait < a.size() && bit < b.size()) {
+    if (a[ait] != b[bit]) {
+      if (diffFound) return false;
+      diffFound = true;
+
+      if (sameLength) {
+        ait++;
+        bit++;
+      } else {
+        bit++;
+      }
+
+      continue;
+    }
+
+    ait++;
+    bit++;
+  }
+
+  return true;
+}
+
+// compress strings
+string stringCompression(string s) {
+  char previous;
+  int count = 0;
+
+  string compressed = "";
+
+  for (char c : s) {
+    if (count == 0) {
+      previous = c;
+      count = 1;
+      continue;
+    }
+
+    if (c != previous) {
+      compressed += to_string(count) + string(1, previous);
+      previous = c;
+      count = 1;
+      continue;
+    }
+
+    count++;
+  }
+
+  compressed += to_string(count) + string(1, previous);
+
+  return compressed.length() < s.length() ? compressed : s;
 }
 
 }  // namespace myFunctions

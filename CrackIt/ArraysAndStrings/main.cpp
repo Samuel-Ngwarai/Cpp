@@ -33,10 +33,28 @@ void testPalindromePermutation() {
   assert(myFunctions::palindromePermutation("") == true);
 }
 
+void testOneEditAway() {
+  assert(myFunctions::oneEditAway("pale", "ple") == true);
+  assert(myFunctions::oneEditAway("bale", "pale") == true);
+  assert(myFunctions::oneEditAway("pa", "pale") == false);
+  assert(myFunctions::oneEditAway("bale", "pade") == false);
+  assert(myFunctions::oneEditAway("", "") == true);
+}
+
+void testStringCompression() {
+  assert(myFunctions::stringCompression("aaaaabccsssssdd") == "5a1b2c5s2d");
+  assert(myFunctions::stringCompression("abcde") == "abcde");
+  assert(myFunctions::stringCompression("AAbbbCCCCCCtt") == "2A3b6C2t");
+}
+
 int main() {
+  cout << "----- STARTING TESTS -----" << endl;
   testUniqueCharactersLogic();
   testIsPermutation();
   testURLify();
   testPalindromePermutation();
+  testOneEditAway();
+  testStringCompression();
+  cout << "----- FINISHED TESTS -----" << endl;
   return 0;
 }
