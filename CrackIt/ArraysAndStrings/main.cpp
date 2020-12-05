@@ -26,9 +26,17 @@ void testURLify() {
   assert(myFunctions::URLify("Mr John Smith    ") == "Mr%20John%20Smith");
 }
 
+void testPalindromePermutation() {
+  assert(myFunctions::palindromePermutation("Tact Coa") == true);
+  assert(myFunctions::palindromePermutation("this should fail") == false);
+  assert(myFunctions::palindromePermutation("2") == true);
+  assert(myFunctions::palindromePermutation("") == true);
+}
+
 int main() {
   testUniqueCharactersLogic();
   testIsPermutation();
   testURLify();
+  testPalindromePermutation();
   return 0;
 }

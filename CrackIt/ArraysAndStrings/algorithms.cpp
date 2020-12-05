@@ -47,32 +47,58 @@ bool isPermutation(string a, string b) {
 
 // replace spaces with %20
 string URLify(string a) {
-	if (a.size() == 0) return a;
+  if (a.size() == 0) return a;
 
-	int pos = a.size() - 1;
-	if (a[pos] != ' ') {
-		cout << "given string does not have space at the end for the function to work. returning string as is" << endl;
-		return a;
-	}
+  int pos = a.size() - 1;
+  if (a[pos] != ' ') {
+    cout << "given string does not have space at the end for the function to "
+            "work. returning string as is"
+         << endl;
+    return a;
+  }
 
-	int it = pos;
-	while (a[it] == ' ' && it >= 0) {
-		it--;
-	}
+  int it = pos;
+  while (a[it] == ' ' && it >= 0) {
+    it--;
+  }
 
-	while (it != 0 && it < pos) {
-		if (a[it] != ' ') {
-			a[pos--] = a[it--];
-			continue;
-		}
+  while (it != 0 && it < pos) {
+    if (a[it] != ' ') {
+      a[pos--] = a[it--];
+      continue;
+    }
 
-		a[pos--] = '0';
-		a[pos--] = '2';
-		a[pos--] = '%';
-		it--;
-	}
+    a[pos--] = '0';
+    a[pos--] = '2';
+    a[pos--] = '%';
+    it--;
+  }
 
-	return a;
+  return a;
+}
+
+// check if a string is a permutation of a palindrome
+bool palindromePermutation(string a) {
+  if (a.length() <= 1) return true;
+
+  unordered_map<char, int> charCounts;
+
+  for (char c : a) {
+    if (c != ' ') charCounts[tolower(c)]++;
+  }
+
+  int evens = 0, odds = 0;
+
+  for (auto [c, count] : charCounts) {
+    if (count % 2 == 0)
+      evens++;
+    else
+      odds++;
+
+    if (odds > 1) return false;
+  }
+
+  return true;
 }
 
 }  // namespace myFunctions
