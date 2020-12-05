@@ -1,21 +1,34 @@
-#include "algorithms.cpp"
-#include <iostream>
 #include <assert.h>
-// #include <gtest/gtest.h>
-// read about and introduce a proper unit testing framework
+
+#include <iostream>
+
+#include "algorithms.cpp"
 
 using namespace std;
 
 void testUniqueCharactersLogic() {
-	assert(uniqueStringCharactersWDS("asdfg") == true);
-	assert(uniqueStringCharactersWDS("adfag") == false);
-	assert(uniqueStringCharactersWDS("") == true);
-	assert(uniqueStringCharactersWODS("asdfg") == true);
-	assert(uniqueStringCharactersWODS("asafg") == false);
-	assert(uniqueStringCharactersWODS("") == true);
+  assert(myFunctions::uniqueStringCharactersWDS("asdfg") == true);
+  assert(myFunctions::uniqueStringCharactersWDS("adfag") == false);
+  assert(myFunctions::uniqueStringCharactersWDS("") == true);
+  assert(myFunctions::uniqueStringCharactersWODS("asdfg") == true);
+  assert(myFunctions::uniqueStringCharactersWODS("asafg") == false);
+  assert(myFunctions::uniqueStringCharactersWODS("") == true);
+}
+
+void testIsPermutation() {
+  assert(myFunctions::isPermutation("abc", "cde") == false);
+  assert(myFunctions::isPermutation("abc", "bac") == true);
+  assert(myFunctions::isPermutation("abc", "aabc") == false);
+  assert(myFunctions::isPermutation("", "") == true);
+}
+
+void testURLify() {
+  assert(myFunctions::URLify("Mr John Smith    ") == "Mr%20John%20Smith");
 }
 
 int main() {
-	testUniqueCharactersLogic();
-	return 0;
+  testUniqueCharactersLogic();
+  testIsPermutation();
+  testURLify();
+  return 0;
 }
