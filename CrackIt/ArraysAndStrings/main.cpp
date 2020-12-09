@@ -67,6 +67,22 @@ void testMatrixRotation() {
          finalMatrix2);
 }
 
+void testZeroMatrix() {
+  vector<vector<int>> matrix{
+      {1, 2, 3, 4}, {3, 5, 0, 8}, {0, 5, 6, 3}, {1, 3, 2, 5}};
+
+  vector<vector<int>> zeroedMatrix{
+      {0, 2, 0, 4}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 3, 0, 5}};
+
+  myFunctions::zeroMatrix(matrix);
+
+  // myFunctions::printMatrix(matrix);
+  // cout << " ------------- " << endl;
+  // myFunctions::printMatrix(zeroedMatrix);
+
+  assert(matrix == zeroedMatrix);
+}
+
 int main() {
   cout << "----- STARTING TESTS -----" << endl;
   testUniqueCharactersLogic();
@@ -76,6 +92,7 @@ int main() {
   testOneEditAway();
   testStringCompression();
   testMatrixRotation();
+  testZeroMatrix();
   cout << "----- FINISHED TESTS -----" << endl;
   return 0;
 }

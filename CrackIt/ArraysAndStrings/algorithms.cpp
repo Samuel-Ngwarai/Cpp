@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <cstdlib>
+#include <set>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
@@ -183,6 +184,48 @@ vector<vector<int>> NinetyDegreeMatrixRotation(vector<vector<int>>& matrix) {
   }
 
   return solution;
+}
+
+// given a matrix and a position within it, set the whole row and column to the
+// expected value
+void setRowAndColumn(vector<vector<int>>& matrix, int iPos, int jPos, int num) {
+  if (iPos < 0 || jPos < 0 || iPos >= matrix.size() ||
+      jPos >= matrix[0].size()) {
+    return;
+  }
+
+  for (int i = 0; i < matrix.size(); i++) {
+    matrix[i][jPos] = num;
+  }
+
+  for (int j = 0; j < matrix[0].size(); j++) {
+    matrix[iPos][j] = num;
+  }
+}
+
+// unordered sets by default don't have a hash function for pairs
+// this is a custom function to use unordered sets with pairs as keys
+struct pair_hash {
+  inline std::size_t operator()(const std::pair<int, int>& v) const {
+    return v.first * 31 + v.second * 17;
+  }
+};
+
+// If an element in the matrix is 0, the whole row and column are set to 0 as
+// well
+void zeroMatrix(vector<vector<int>>& matrix) {
+  unordered_set<pair<int, int>, pair_hash> zeroPositions;
+  for (int i = 0; i < matrix.size(); i++) {
+    for (int j = 0; j < matrix[0].size(); j++) {
+      if (matrix[i][j] == 0) {
+        zeroPositions.insert({i, j});
+      }
+    }
+  }
+
+  for (auto [i, j] : zeroPositions) {
+    setRowAndColumn(matrix, i, j, 0);
+  }
 }
 
 // print a matrix
