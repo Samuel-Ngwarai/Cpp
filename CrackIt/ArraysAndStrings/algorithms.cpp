@@ -3,6 +3,7 @@
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
+#include <vector>
 
 using namespace std;
 
@@ -167,6 +168,31 @@ string stringCompression(string s) {
   compressed += to_string(count) + string(1, previous);
 
   return compressed.length() < s.length() ? compressed : s;
+}
+
+// rotate a matrix by 90 degrees
+vector<vector<int>> NinetyDegreeMatrixRotation(vector<vector<int>>& matrix) {
+  vector<vector<int>> solution(matrix.size(), vector<int>(matrix[0].size(), 0));
+
+  int n = matrix.size();
+
+  for (int i = 0; i < matrix.size(); i++) {
+    for (int j = 0; j < matrix[0].size(); j++) {
+      solution[j][n - 1 - i] = matrix[i][j];
+    }
+  }
+
+  return solution;
+}
+
+// print a matrix
+void printMatrix(vector<vector<int>>& matrix) {
+  for (int i = 0; i < matrix.size(); i++) {
+    for (int j = 0; j < matrix[0].size(); j++) {
+      cout << matrix[i][j] << " - ";
+    }
+    cout << endl;
+  }
 }
 
 }  // namespace myFunctions

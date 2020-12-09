@@ -47,6 +47,26 @@ void testStringCompression() {
   assert(myFunctions::stringCompression("AAbbbCCCCCCtt") == "2A3b6C2t");
 }
 
+void testMatrixRotation() {
+  // matrixes to test with
+  vector<vector<int>> originalMatrix{
+      {1, 2, 3, 4}, {5, 6, 7, 8}, {0, 2, 4, 6}, {2, 5, 1, 6}};
+  vector<vector<int>> finalMatrix{
+      {2, 0, 5, 1}, {5, 2, 6, 2}, {1, 4, 7, 3}, {6, 6, 8, 4}};
+  vector<vector<int>> originalMatrix1{{1}};
+  vector<vector<int>> finalMatrix1{{1}};
+  vector<vector<int>> originalMatrix2{{}};
+  vector<vector<int>> finalMatrix2{{}};
+
+  // tests
+  assert(myFunctions::NinetyDegreeMatrixRotation(originalMatrix) ==
+         finalMatrix);
+  assert(myFunctions::NinetyDegreeMatrixRotation(originalMatrix1) ==
+         finalMatrix1);
+  assert(myFunctions::NinetyDegreeMatrixRotation(originalMatrix2) ==
+         finalMatrix2);
+}
+
 int main() {
   cout << "----- STARTING TESTS -----" << endl;
   testUniqueCharactersLogic();
@@ -55,6 +75,7 @@ int main() {
   testPalindromePermutation();
   testOneEditAway();
   testStringCompression();
+  testMatrixRotation();
   cout << "----- FINISHED TESTS -----" << endl;
   return 0;
 }
