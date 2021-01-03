@@ -1,7 +1,9 @@
-all: compileArraysAndStrings runArraysAndStrings
+all: compileAndRunArraysAndStrings compileAndRunLinkedLists
 
-compileArraysAndStrings:
+compileAndRunArraysAndStrings:
 	g++ --std=c++17 -o main CrackIt/ArraysAndStrings/main.cpp
+	./main
 
-runArraysAndStrings:
+compileAndRunLinkedLists:
+	g++ -std=c++17 -o main CrackIt/LinkedLists/main.cpp
 	./main

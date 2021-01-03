@@ -84,7 +84,8 @@ void testZeroMatrix() {
 }
 
 int main() {
-  cout << "----- STARTING TESTS -----" << endl;
+  cout << endl << endl;
+  cout << "----- STARTING Arrays and Strings TESTS -----" << endl;
   testUniqueCharactersLogic();
   testIsPermutation();
   testURLify();
@@ -93,6 +94,6 @@ int main() {
   testStringCompression();
   testMatrixRotation();
   testZeroMatrix();
-  cout << "----- FINISHED TESTS -----" << endl;
+  cout << "----- FINISHED Arrays and Strings TESTS -----" << endl;
   return 0;
 }
