@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stack>
 #include <vector>
 
 using namespace std;
@@ -63,7 +64,7 @@ Node* deleteNode(Node* head, int d) {
 
   if (head->data == d) {
     Node* newHead = head->next;
-    // delete head;  // memory management
+    delete head;  // memory management
     return deleteNode(newHead, d);
   }
 
@@ -73,7 +74,7 @@ Node* deleteNode(Node* head, int d) {
     if (it->next->data == d) {
       it->next = it->next->next;
       continue;
-      // delete it -> next;
+      delete it->next;
     }
     it = it->next;
   }
@@ -105,7 +106,96 @@ void printLinkedList(Node* head) {
   }
   cout << endl;
 }
+/*
 
-// Node deleteNode(Node head, Node node) {}
+1-2-4-2-54-6-7-4-2-1-34-5
+
+*/
+// Node* removeDuplicates(Node* head) {}
+
+// Delete node using direct pointer to node
+Node* deleteNode(Node* head, Node* node) {
+  if (!node) return head;
+
+  Node* it = node;
+
+  while (it->next != NULL) {
+    it->data = it->next->data;
+    it = it->next;
+  }
+
+  delete it;
+
+  return head;
+}
+
+// Delete node using direct pointer to node
+void deleteNode(Node* node) {
+  Node* it = node;
+
+  while (it->next != NULL) {
+    it->data = it->next->data;
+    it = it->next;
+  }
+
+  delete it;
+}
+
+// TEST THESE
+
+// 1 - 2 - 3 - 6 - 5 - 8 - 7
+Node* findKthToLast(Node* head, int k) {
+  if (!head) return NULL;
+
+  Node *it, *it2 = head;
+
+  for (int i = 0; i < k; i++) {
+    if (!it) return NULL;
+    it = it->next;
+  }
+
+  while (it != NULL) {
+    it2 = it2->next;
+    it = it->next;
+  }
+
+  return it2;
+}
+
+void partitionAroundN(Node* head, int n) {
+  if (!head) return;
+
+  Node *it, *it2 = head;
+
+  while (it != NULL) {
+    if (it->data < n) {
+      swap(it, it2);
+      it2 = it2->next;
+    }
+    it = it->next;
+  }
+}
+
+int countNodes(Node* head) {
+  if (!head) return 0;
+
+  int count = 0;
+  Node* it = head;
+
+  while (it != NULL) {
+    it = it->next;
+    count++;
+  }
+
+  return count;
+}
+
+bool checkPalindrome(Node* head) {
+  stack<Node*> nodeStack;
+
+  int count = countNodes(head);
+
+  Node* it = head;
+}
 
 }  // namespace LinkedListFunctions
