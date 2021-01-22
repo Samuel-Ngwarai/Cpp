@@ -191,6 +191,9 @@ int countNodes(Node* head) {
 }
 
 bool checkPalindrome(Node* head) {
+  if (!head) return false;
+  if (!head->next) return true;
+
   stack<Node*> nodeStack;
 
   int count = countNodes(head);
@@ -202,6 +205,7 @@ bool checkPalindrome(Node* head) {
   while (it != NULL && i < stackCount) {
     nodeStack.push(it);
     it = it->next;
+    i++;
   }
 
   if (count % 2 != 0) {
