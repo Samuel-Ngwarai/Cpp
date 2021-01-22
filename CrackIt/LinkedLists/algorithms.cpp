@@ -194,8 +194,29 @@ bool checkPalindrome(Node* head) {
   stack<Node*> nodeStack;
 
   int count = countNodes(head);
+  int stackCount = count % 2 == 0 ? count / 2 : (count - 1) / 2;
 
   Node* it = head;
+  int i = 0;
+
+  while (it != NULL && i < stackCount) {
+    nodeStack.push(it);
+    it = it->next;
+  }
+
+  if (count % 2 != 0) {
+    it = it->next;
+    // additional check here
+  }
+
+  while (it != NULL) {
+    Node* it2 = nodeStack.top();
+
+    if (it2->data != it->data) return false;
+
+    it = it->next;
+  }
+  return true;
 }
 
 }  // namespace LinkedListFunctions
